@@ -1,0 +1,22 @@
+/* app global css */
+
+header .q-icon {
+  font-size:2rem;
+  padding:1rem;
+  cursor:pointer;
+}
+
+header button {
+  position:relative;
+  left:12px;
+}
+
+header .q-toolbar__title {
+  margin-left:1rem;
+  position:relative;
+  right:12px;
+}
+
+#q-app {
+  overflow-x: hidden;
+}
