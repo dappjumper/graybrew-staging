@@ -23,7 +23,9 @@
           icon="shopping_cart"
           aria-label="Cart"
           @click="toggle"
-        />
+        >
+          <span :class="{noshow: !getItems.length}" class="counter">{{ getCounterValue }}</span>
+        </q-btn>
         <q-btn
           flat
           dense
@@ -78,6 +80,25 @@
   </q-layout>
 </template>
 
+<style scoped>
+  .counter {
+    position:absolute;
+    top:5px;
+    right:5px;
+    height:1rem;
+    width:1rem;
+    font-size:0.8rem;
+    line-height:0.5rem;
+    padding:4px;
+    border-radius:16px;
+    transition:all .1s;
+    background:rgba(255,255,255,0.1);
+  }
+  .noshow {
+    opacity:0;
+  }
+</style>
+
 <script>
 
 import EssentialLink from 'components/EssentialLink.vue'
@@ -109,6 +130,9 @@ export default {
       'isOpened',
       'getItems'
     ]),
+    getCounterValue () {
+      return (this.getItems.length < 10 ? this.getItems.length : '9+')
+    },
     showCart: {
       get () {
         return this.isOpened

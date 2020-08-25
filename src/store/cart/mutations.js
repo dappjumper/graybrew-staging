@@ -1,5 +1,5 @@
 export function addItem (state, payload) {
-  state.opened = true
+  // state.opened = true
   state.items.push(payload)
 }
 

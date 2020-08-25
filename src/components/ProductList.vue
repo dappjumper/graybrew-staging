@@ -1,9 +1,8 @@
 <template>
   <div>
-    <div v-if="ready">
-      <h1>Products</h1>
-      <div>
-        <Product :id="key" :product="item" :key="key" v-for="(item, key) in catalog" />
+    <div class="row" v-if="ready">
+      <div class="col-xs-12 col-sm-6 col-md-3" :key="key" v-for="(item, key) in catalog">
+        <Product :id="key" :product="item" />
       </div>
     </div>
     <div v-if="!ready">
@@ -11,6 +10,16 @@
     </div>
   </div>
 </template>
+
+<style scoped>
+  .row {
+    width:100vw;
+    margin:0 auto!important;
+  }
+  .row > * {
+    padding:1rem;
+  }
+</style>
 
 <script>
 

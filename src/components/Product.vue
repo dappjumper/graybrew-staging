@@ -9,7 +9,7 @@
         {{ product.name }}
       </div>
     </q-img>
-
+    <q-card-section v-if="small"> {{ product.name }} <br/> {{ product.description || product.summary }} </q-card-section>
     <q-card-section v-if="!small">
       {{ product.description || 'Description coming soon!' }}
     </q-card-section>
@@ -27,10 +27,6 @@
 </template>
 
 <style scoped>
-  .cover {
-    background-size:cover;
-    background-position:center center;
-  }
 </style>
 
 <script>
