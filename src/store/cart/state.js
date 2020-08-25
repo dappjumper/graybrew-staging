@@ -5,6 +5,7 @@ function localCart () {
 
 export default function () {
   return {
-    items: localCart()
+    items: localCart(),
+    opened: false
   }
 }

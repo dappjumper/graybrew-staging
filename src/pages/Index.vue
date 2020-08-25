@@ -1,15 +1,17 @@
 <template>
-  <q-page class="flex flex-center">
-    <img
-      style="max-width:90%"
-      alt="Gray Brew logo"
-      src="~assets/logo.png"
-    >
+  <q-page class="flex">
+    <ProductList />
   </q-page>
 </template>
 
 <script>
+
+import ProductList from './../components/ProductList'
+
 export default {
-  name: 'PageIndex'
+  name: 'PageIndex',
+  components: {
+    ProductList
+  }
 }
 </script>
