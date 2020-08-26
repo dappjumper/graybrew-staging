@@ -2,7 +2,7 @@
   <div>
     <div class="row" v-if="ready">
       <div class="col-xs-12 col-sm-6 col-md-3" :key="key" v-for="(item, key) in catalog">
-        <Product :id="key" :product="item" />
+        <Product :item="item" :id="key" :product="item" />
       </div>
     </div>
     <div v-if="!ready">
@@ -14,10 +14,12 @@
 <style scoped>
   .row {
     width:100vw;
+    padding:1rem;
     margin:0 auto!important;
   }
   .row > * {
     padding:1rem;
+    box-sizing:border-box;
   }
 </style>
 

@@ -1,5 +1,5 @@
 <template>
-  <q-layout view="lHh Lpr lFf">
+  <q-layout view="hHh Lpr fFf">
     <q-header class="bg-dark">
       <q-toolbar>
 
@@ -50,7 +50,16 @@
         >
           Cart
         </q-item-label>
-        <ProductFromID style="color:#fafafa;" small :key="index" :index="index" :id="item" v-for="(item, index) in getItems" />
+        <transition-group
+          enter-active-class="scaleIn"
+          leave-active-class="scaleOut"
+        >
+          <q-card dark flat class="cartItem" v-for="(item) in getItems" :key="item.id">
+            <q-card-section>
+              <ProductFromID style="color:#fafafa;" small :item="item" />
+            </q-card-section>
+          </q-card>
+        </transition-group>
       </q-list>
     </q-drawer>
 
@@ -110,7 +119,10 @@ const linksData = [
 
 export default {
   name: 'MainLayout',
-  components: { EssentialLink, ProductFromID },
+  components: {
+    EssentialLink,
+    ProductFromID
+  },
   data () {
     return {
       menuDrawerOpen: false,

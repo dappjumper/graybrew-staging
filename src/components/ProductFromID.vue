@@ -1,5 +1,5 @@
 <template>
-  <Product mini :id="id" :index="index" :product="product"/>
+  <Product mini :id="item.id" :quantity="item.quantity" :index="index" :product="product"/>
 </template>
 
 <style scoped>
@@ -16,7 +16,7 @@ import Product from './Product'
 
 export default {
   name: 'ProductList',
-  props: ['id', 'index'],
+  props: ['item', 'index'],
   components: {
     Product
   },
@@ -26,7 +26,7 @@ export default {
   computed: {
     product: {
       get () {
-        return this.getProduct()(this.id)
+        return this.getProduct()(this.item.id)
       },
       set (value) {
       }
