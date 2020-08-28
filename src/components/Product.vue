@@ -20,7 +20,7 @@
       </q-card-section>
 
       <q-card-section class="q-pt-none" style="margin-bottom: 3.5rem;">
-        <div class="text-subtitle1 text-bold">
+        <div class="text-subtitle1 text-bold text-primary">
           ₱{{ product.price }}
         </div>
         <div class="text-caption text-grey-8">
@@ -33,7 +33,8 @@
           <transition name="fade">
             <q-btn
               color="primary"
-              icon="add"
+              flat
+              icon="o_add"
               class="absolute quantifier"
               @click="quantityToAdd++"
               style="border-bottom-left-radius:0; border-top-left-radius:0; top: 0; right: 0px; z-index:1; transform: translateY(-100%);"
@@ -42,8 +43,7 @@
           </transition>
           <q-input
             color="primary"
-            unelevated
-            class="absolute quantifier fadeIn shown"
+            class="absolute quantifier fadeIn shown text-primary"
             v-bind:class="{shown: quantityToAdd > 1}"
             v-model.number="quantityToAdd"
             type="number"
@@ -52,14 +52,15 @@
           />
           <q-btn
             color="primary"
-            icon="remove"
+            icon="o_remove"
+            flat
             class="absolute quantifier fadeIn"
             :class="{shown: quantityToAdd >=2}"
             @click="(quantityToAdd >= 2 ? quantityToAdd-- : '')"
             style="border-bottom-right-radius:0; border-top-right-radius:0; top: 0; left: 0px; z-index:1; transform: translateY(-100%);"
           >
           </q-btn>
-          <q-btn @click="quantityAdded = quantityToAdd; animateAdding(); addItem({id: id, quantity: quantityToAdd}); quantityToAdd = 1; " style="border-radius:0; width:100%;" class="absolute-right addButton" unelevated color="primary" :class="{'bg-positive': adding}" :label="(!adding ? 'Add '+(quantityToAdd > 1 ? ' '+ quantityToAdd +' ' : '')+' to cart' : quantityAdded+' added to cart!')" :icon="(!adding ? 'shopping_cart' : 'thumb_up')" />
+          <q-btn @click="quantityAdded = quantityToAdd; animateAdding(); addItem({id: id, quantity: quantityToAdd}); quantityToAdd = 1; " style="border-radius:0; width:100%;" class="absolute-right addButton" unelevated color="primary" :class="{'bg-positive': adding}" :label="(!adding ? 'Add '+(quantityToAdd > 1 ? ' '+ quantityToAdd +' ' : '')+' to cart' : quantityAdded+' added to cart!')" :icon="(!adding ? 'o_shopping_cart' : 'o_thumb_up')" />
         </q-btn-group>
       </q-card-section>
     </q-card>
@@ -104,7 +105,7 @@
     </q-card-section>
     <q-card-section>
       <q-btn-group v-if="!small">
-        <q-btn @click="quantityAdded = quantityToAdd; animateAdding(); addItem({id: id, quantity: quantityToAdd}); quantityToAdd = 1; " style="width:100%;" class="absolute-right addButton" flat unelevated outline  color="primary" :class="{'bg-positive text-white': adding}" :label="(!adding ? 'Add to cart' : quantityAdded+' added to cart!')" :icon="(!adding ? 'shopping_cart' : 'thumb_up')" />
+        <q-btn @click="quantityAdded = quantityToAdd; animateAdding(); addItem({id: id, quantity: quantityToAdd}); quantityToAdd = 1; " style="width:100%;" class="absolute-right addButton" flat unelevated outline  color="primary" :class="{'bg-positive text-white': adding}" :label="(!adding ? 'Add to cart' : quantityAdded+' added to cart!')" :icon="(!adding ? 'o_shopping_cart' : 'thumb_up')" />
       </q-btn-group>
       <q-btn-group v-if="small">
         <q-btn dense @click="removeItem(id)" class="absolute-right" style="width:100%;" color="red" label="Remove" icon="delete" />

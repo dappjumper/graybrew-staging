@@ -1,5 +1,5 @@
 <template>
-  <q-layout :class="{scrolled: scrolled}" view="hHh Lpr fFf" class="bg-grey-1">
+  <q-layout :class="{scrolled: cartOpenWhilstScrolled || scrolled}" view="hHh Lpr fFf" class="bg-grey-1">
     <q-header class="text-grey-9">
       <q-toolbar>
 
@@ -13,7 +13,7 @@
             class="menuItem first"
             style="padding-right:1.5rem"
             to="/shop"
-            icon="shop"
+            icon="o_shop"
             aria-label="Shop"
           >Shop</q-btn>
           <q-btn
@@ -21,16 +21,16 @@
             class="menuItem middle"
             style="padding-right:1.5rem"
             to="/account"
-            icon="person"
+            icon="o_person"
             aria-label="Account"
           >Account</q-btn>
           <q-btn
             flat
             style="padding-right:1.5rem; margin-left:-0.8rem;"
             class="menuItem last"
-            icon="shopping_cart"
+            icon="o_shopping_cart"
             aria-label="Cart"
-            @click="toggle"
+            @click="showCart = true"
           >Cart</q-btn>
         </div>
       </q-toolbar>
@@ -38,6 +38,7 @@
     <q-drawer
       v-model="showCart"
       side="right"
+      behavior="mobile"
       overlay
       content-class="bg-secondary"
     >
@@ -45,7 +46,7 @@
         <q-item-label
           header
           @click="toggle"
-          class="text-grey-8 bg-primary"
+          class="text-primary bg-grey-1"
         >
           Cart
         </q-item-label>
@@ -109,7 +110,8 @@ export default {
       showAccountDialog: false,
       menuDrawerOpen: false,
       essentialLinks: linksData,
-      scrolled: false
+      scrolled: false,
+      cartOpenWhilstScrolled: false
     }
   },
   methods: {
@@ -127,6 +129,7 @@ export default {
       } else {
         if (this.scrolled) this.scrolled = false
       }
+      return this.scrolled
     }
   },
   mounted () {
@@ -145,6 +148,16 @@ export default {
         return this.isOpened
       },
       set (value) {
+        if (value) {
+          if (this.checkScrolled()) {
+            this.cartOpenWhilstScrolled = true
+            this.scrolled = true
+          } else {
+            this.cartOpenWhilstScrolled = false
+          }
+        } else {
+          this.cartOpenWhilstScrolled = false
+        }
         this.toggle()
       }
     }

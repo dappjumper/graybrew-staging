@@ -39,8 +39,7 @@ module.exports = function (/* ctx */) {
       // 'line-awesome',
       // 'roboto-font-latin-ext', // this or either 'roboto-font', NEVER both!
 
-      'roboto-font', // optional, you are not bound to it
-      'material-icons' // optional, you are not bound to it
+      'material-icons-outlined' // optional, you are not bound to it
     ],
 
     // Full list of options: https://quasar.dev/quasar-cli/quasar-conf-js#Property%3A-build
@@ -87,9 +86,10 @@ module.exports = function (/* ctx */) {
       lang: 'en-us', // Quasar language pack
       config: {
         brand: {
-          primary: '#333333',
+          primary: '#836953',
           secondary: '#222222',
-          accent: '#111111'
+          accent: '#536d83',
+          positive: '#536d83'
         }
       },
 
