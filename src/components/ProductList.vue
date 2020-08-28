@@ -1,9 +1,7 @@
 <template>
   <div>
-    <div class="row" v-if="ready">
-      <div class="col-xs-12 col-sm-6 col-md-3" :key="key" v-for="(item, key) in catalog">
-        <Product :item="item" :id="key" :product="item" />
-      </div>
+    <div class="products" v-if="ready">
+      <Product class="product" :item="item" :id="key" :product="item" :key="key" v-for="(item, key) in catalog" />
     </div>
     <div v-if="!ready">
       Loading...

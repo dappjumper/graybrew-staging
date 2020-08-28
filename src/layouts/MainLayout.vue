@@ -1,52 +1,51 @@
 <template>
-  <q-layout view="hHh Lpr fFf">
-    <q-header class="bg-dark">
+  <q-layout :class="{scrolled: scrolled}" view="hHh Lpr fFf" class="bg-grey-1">
+    <q-header class="text-grey-9">
       <q-toolbar>
 
         <q-toolbar-title>
-          Gray Brew
+          <router-link to="/" class="link">Gray Brew</router-link>
         </q-toolbar-title>
 
-        <q-btn
-          flat
-          dense
-          round
-          icon="menu"
-          aria-label="Menu"
-          @click="menuDrawerOpen = !menuDrawerOpen"
-        />
-
-        <q-btn
-          flat
-          dense
-          round
-          icon="shopping_cart"
-          aria-label="Cart"
-          @click="toggle"
-        >
-          <span :class="{noshow: !getItems.length}" class="counter">{{ getCounterValue }}</span>
-        </q-btn>
-        <q-btn
-          flat
-          dense
-          round
-          :to="$route.path === '/account' ? '/' : 'account'"
-          icon="person"
-          aria-label="Account"
-        >
-        </q-btn>
+        <div class="t-menu">
+          <q-btn
+            flat
+            class="menuItem first"
+            style="padding-right:1.5rem"
+            to="/shop"
+            icon="shop"
+            aria-label="Shop"
+          >Shop</q-btn>
+          <q-btn
+            flat
+            class="menuItem middle"
+            style="padding-right:1.5rem"
+            to="/account"
+            icon="person"
+            aria-label="Account"
+          >Account</q-btn>
+          <q-btn
+            flat
+            style="padding-right:1.5rem; margin-left:-0.8rem;"
+            class="menuItem last"
+            icon="shopping_cart"
+            aria-label="Cart"
+            @click="toggle"
+          >Cart</q-btn>
+        </div>
       </q-toolbar>
     </q-header>
     <q-drawer
       v-model="showCart"
       side="right"
       overlay
-      content-class="bg-dark"
+      content-class="bg-secondary"
     >
       <q-list>
         <q-item-label
           header
-          class="text-grey-8"
+          @click="toggle"
+          class="text-grey-8 bg-primary"
         >
           Cart
         </q-item-label>
@@ -54,55 +53,37 @@
           enter-active-class="scaleIn"
           leave-active-class="scaleOut"
         >
-          <q-card dark flat class="cartItem" v-for="(item) in getItems" :key="item.id">
+          <q-card light flat class="cartItem" v-for="(item) in getItems" :key="item.id">
             <q-card-section>
-              <ProductFromID style="color:#fafafa;" small :item="item" />
+              <ProductFromID class="cartProduct" style="color:#fafafa;" small :item="item" />
             </q-card-section>
           </q-card>
         </transition-group>
       </q-list>
     </q-drawer>
 
-    <q-drawer
-      v-model="menuDrawerOpen"
-      side="left"
-      content-class="bg-dark"
-    >
-      <q-list>
-        <q-item-label
-          header
-          class="text-grey-8"
-        >
-          Menu
-        </q-item-label>
-        <EssentialLink
-          v-for="link in essentialLinks"
-          :key="link.title"
-          v-bind="link"
-        />
-      </q-list>
-    </q-drawer>
-
-    <q-page-container class="bg-dark">
+    <q-page-container>
       <router-view />
     </q-page-container>
+    <q-dialog v-model="showAccountDialog" full-width>
+      <q-card style="margin-top:3rem" class="bg-secondary">
+        <q-card-section class="bg-primary" style="position:fixed; z-index:1; width:calc(100% - 48px); border-top-right-radius:4px;">
+          <div class="text-h6">Contact & delivery</div>
+        </q-card-section>
+
+        <q-separator />
+
+        <q-card-section class="scroll" style="padding-top:5rem; padding-bottom:4rem;">
+          <CustomerForm />
+        </q-card-section>
+
+        <q-separator />
+      </q-card>
+    </q-dialog>
   </q-layout>
 </template>
 
 <style scoped>
-  .counter {
-    position:absolute;
-    top:5px;
-    right:5px;
-    height:1rem;
-    width:1rem;
-    font-size:0.8rem;
-    line-height:0.5rem;
-    padding:4px;
-    border-radius:16px;
-    transition:all .1s;
-    background:rgba(255,255,255,0.1);
-  }
   .noshow {
     opacity:0;
   }
@@ -110,8 +91,8 @@
 
 <script>
 
-import EssentialLink from 'components/EssentialLink.vue'
 import ProductFromID from 'components/ProductFromID'
+import CustomerForm from 'components/CustomerForm'
 import { mapGetters, mapMutations } from 'vuex'
 
 const linksData = [
@@ -120,13 +101,15 @@ const linksData = [
 export default {
   name: 'MainLayout',
   components: {
-    EssentialLink,
-    ProductFromID
+    ProductFromID,
+    CustomerForm
   },
   data () {
     return {
+      showAccountDialog: false,
       menuDrawerOpen: false,
-      essentialLinks: linksData
+      essentialLinks: linksData,
+      scrolled: false
     }
   },
   methods: {
@@ -135,7 +118,19 @@ export default {
     ]),
     ...mapGetters('products', [
       'getProduct'
-    ])
+    ]),
+    checkScrolled () {
+      const doc = document.documentElement
+      const top = (window.pageYOffset || doc.scrollTop) - (doc.clientTop || 0)
+      if (top > 70) {
+        if (!this.scrolled) this.scrolled = true
+      } else {
+        if (this.scrolled) this.scrolled = false
+      }
+    }
+  },
+  mounted () {
+    setInterval(this.checkScrolled, 50)
   },
   computed: {
     ...mapGetters('cart', [

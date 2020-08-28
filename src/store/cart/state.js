@@ -1,5 +1,5 @@
 function localCart () {
-  const cart = localStorage.getItem('cart_local') || []
+  const cart = localStorage.getItem('localCart') || []
   return (typeof cart === 'string' ? JSON.parse(cart) : cart)
 }
 

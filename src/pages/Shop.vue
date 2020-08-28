@@ -1,18 +1,11 @@
 <template>
   <section>
-    <div class="underHeader row bg-accent text-grey-1 hero">
-      <div class="container">
-        <h1>
-          Enjoy Cold Brew
-        </h1>
-      </div>
-    </div>
-    <div class="row bg-primary text-grey-1">
+    <div class="underHeader row bg-primary text-grey-1">
       <div class="container">
         <h2>Our products</h2>
       </div>
     </div>
-    <div class="row bg-grey-1 text-grey-9" style="padding-top:3rem">
+    <div class="row bg-grey-1 text-grey-9" style="margin-top:3rem">
       <div class="container store">
         <ProductList />
       </div>
@@ -21,15 +14,6 @@
 </template>
 
 <style>
-
-.hero {
-  padding-top:0;
-  min-height:66vh;
-}
-
-.q-page-container {
-  padding-top:0!important;
-}
 
 </style>
 
