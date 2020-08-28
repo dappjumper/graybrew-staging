@@ -12,7 +12,7 @@
         <h2 class="text-bold">Our products</h2>
       </div>
     </div>
-    <div class="row bg-grey-1 text-grey-9" style="padding-top:3rem">
+    <div class="row bg-grey-1 text-grey-9">
       <div class="container store">
         <ProductList />
       </div>
