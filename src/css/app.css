@@ -299,3 +299,12 @@ body {
 .product .quantifier {
   pointer-events:all!important;
 }
+
+.product .fadeIn {
+  pointer-events:none!important;
+}
+
+.product .fadeIn.shown {
+  pointer-events:all!important;
+}
+
