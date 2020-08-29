@@ -8,8 +8,8 @@
       </q-card-section>
     </q-card>
     <!-- End cart -->
-    <q-card v-if="!small" class="displayItem">
-      <q-img :src="product.thumb" />
+    <q-card v-if="!small" flat class="displayItem">
+      <q-img @click="$router.push('/shop/'+id)" style="cursor:pointer;" :src="product.thumb" />
 
       <q-card-section class="text-primary">
         <div class="row no-wrap items-center">
@@ -66,53 +66,6 @@
     </q-card>
     <!-- Showcase -->
   </div>
-
-  <!-- End showcase -->
-  <!-- Old
-  <q-card :class="{small:small, adding: adding}" :style="small ? 'background-image:url('+product.thumb+')' : ''" square flat class="productcard">
-    <q-img
-      v-if="!small"
-      :src="product.thumb"
-    >
-      <div class="text-white absolute-bottom text-h6">
-        {{ product.name }} - ₱{{ product.price * quantityToAdd }}
-      </div>
-
-    </q-img>
-    <q-card-section v-if="small"> {{ quantity }} x {{ product.name }} - ₱{{ product.price * quantity }}<br/> {{ product.description || product.summary }} </q-card-section>
-    <q-card-section v-if="!small">
-      {{ product.description || 'Description coming soon!' }}
-    </q-card-section>
-    <q-card-section class="quantity" v-if="!small">
-      <q-input bottom-slots min="1" @input="ensureSafeQuantity()" max="99" v-model.number="quantityToAdd" label="Quantity" type="number">
-        <template v-slot:prepend>
-          <q-btn round dense @click="if(quantityToAdd>1) { quantityToAdd--; } else { quantityToAdd = 1 }" flat icon="remove" />
-        </template>
-        <template v-slot:append>
-          <q-btn round dense @click="quantityToAdd++" flat icon="add" />
-        </template>
-      </q-input>
-    </q-card-section>
-    <q-card-section v-if="small">
-      <q-input dark bottom-slots min="0" max="99" v-model.number="innerQuantity" label="Quantity" type="number">
-        <template v-slot:prepend>
-          <q-btn round dense @click="changeQuantity({id: id, quantity: -1})" flat icon="remove" />
-        </template>
-        <template v-slot:append>
-          <q-btn round dense @click="changeQuantity({id: id, quantity: 1})" flat icon="add" />
-        </template>
-      </q-input>
-    </q-card-section>
-    <q-card-section>
-      <q-btn-group v-if="!small">
-        <q-btn @click="quantityAdded = quantityToAdd; animateAdding(); addItem({id: id, quantity: quantityToAdd}); quantityToAdd = 1; " style="width:100%;" class="absolute-right addButton" flat unelevated outline  color="primary" :class="{'bg-positive text-white': adding}" :label="(!adding ? 'Add to cart' : quantityAdded+' added to cart!')" :icon="(!adding ? 'o_shopping_cart' : 'thumb_up')" />
-      </q-btn-group>
-      <q-btn-group v-if="small">
-        <q-btn dense @click="removeItem(id)" class="absolute-right" style="width:100%;" color="red" label="Remove" icon="delete" />
-      </q-btn-group>
-    </q-card-section>
-
-  </q-card>-->
 </template>
 
 <style scoped>
@@ -169,7 +122,8 @@ export default {
       'setQuantity'
     ]),
     ...mapGetters('cart', [
-      'quantityInCart'
+      'quantityInCart',
+      'toggle'
     ]),
     animateAdding () {
       this.adding = true

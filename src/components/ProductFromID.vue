@@ -2,13 +2,6 @@
   <Product mini :id="item.id" :quantity="item.quantity" :index="index" :product="product"/>
 </template>
 
-<style scoped>
-  .cover {
-    background-size:cover;
-    background-position:center center;
-  }
-</style>
-
 <script>
 
 import { mapGetters } from 'vuex'

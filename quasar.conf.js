@@ -86,8 +86,8 @@ module.exports = function (/* ctx */) {
       lang: 'en-us', // Quasar language pack
       config: {
         brand: {
-          primary: '#836953',
-          secondary: '#222222',
+          primary: '#333333',
+          secondary: '#fafafa',
           accent: '#536d83',
           positive: '#536d83'
         }
