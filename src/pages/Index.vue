@@ -3,7 +3,7 @@
     <div style="position:relative;" class="underHeader row bg-secondary text-grey-1 hero">
       <div class="container sidepad heroContent">
         <h1 class="text-bold">
-          Enjoy Cold Brew
+
         </h1>
       </div>
       <div class="video-container">
@@ -33,6 +33,10 @@
   z-index:9;
 }
 
+.hero h1 {
+  line-height:2.8rem;
+}
+
 .video-container {
   position: absolute;
   top: 0;
@@ -44,7 +48,7 @@
 }
 
 .video-container video {
-  min-height:820px;
+  min-height:100%;
   width:100%;
   position:absolute;
   top:50%;
