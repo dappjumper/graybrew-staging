@@ -196,22 +196,16 @@ h1, h2, h3, h4, h5, h6, .q-btn, .text-h6, .text-h5, .text-h4, .text-h3, .text-h2
 }
 
 .q-drawer__content .q-item__label--header {
-  padding-top:1.5rem;
-  padding-bottom:1.5rem;
-  max-height:64px!important;
   color:#333333!important;
-}
-
-.q-drawer__content .q-item__label--header {
-  padding-top:2.5rem!important;
-  padding-bottom:2.5rem!important;
+  padding-top:1.8rem!important;
+  padding-bottom:1.8rem!important;
   max-height:999px!important;
 }
 
 .scrolled .q-drawer__content .q-item__label--header {
-  padding-top:1.5rem!important;
+  padding-top:0.85rem!important;
   padding-bottom:1.5rem!important;
-  max-height:64px!important;
+  max-height:65px!important;
 }
 
 .q-btn {
@@ -308,3 +302,11 @@ body {
   pointer-events:all!important;
 }
 
+.q-page-container {
+  padding-top:0!important;
+}
+
+.sidepad {
+  padding-left:1rem;
+  padding-right:1rem;
+}

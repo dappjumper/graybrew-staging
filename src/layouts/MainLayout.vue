@@ -48,7 +48,12 @@
           @click="toggle"
           class="text-primary bg-grey-1"
         >
-          Cart
+          <q-btn
+            flat
+            style="pointer-events:none; padding:none!important;"
+            icon="o_shopping_cart"
+            aria-label="Cart"
+          ></q-btn>Cart
         </q-item-label>
         <transition-group
           enter-active-class="scaleIn"
