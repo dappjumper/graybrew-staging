@@ -9,7 +9,7 @@
     </q-card>
     <!-- End cart -->
     <q-card v-if="!small" flat class="displayItem">
-      <q-img @click="$router.push('/shop/'+id)" style="cursor:pointer;" :src="product.thumb" />
+      <q-img @click="$router.push('/shop/'+id)" style="cursor:pointer; height:250px;" contain :src="product.thumb" />
 
       <q-card-section class="text-primary">
         <div class="row no-wrap items-center">
@@ -68,29 +68,13 @@
   </div>
 </template>
 
-<style scoped>
-  .quantifier {
-    height:50px;
-    width:50px;
-  }
-  .fadeIn {
-    opacity:0;
-    transition: all .15s;
-    transform:translate(-100%, -100%)!important;
-  }
-  .fadeIn.shown {
-    opacity:1;
-    transform:translate(0, -100%)!important;
-  }
-</style>
-
 <script>
 
 import { mapMutations, mapGetters } from 'vuex'
 
 export default {
   name: 'ProductList',
-  props: ['product', 'id', 'quantity', 'mini'],
+  props: ['product', 'id', 'quantity', 'mini', 'expanded'],
   data: () => {
     return {
       quantityToAdd: 1,

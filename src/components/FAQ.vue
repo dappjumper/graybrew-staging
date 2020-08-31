@@ -1,21 +1,35 @@
 <template>
-  <div>
-    <div class="pair" :key="index" :class="{evened: (index%2 == 0 ? false : true)}" v-for="(item, index) in elements">
-      <div class="question text-h4 text-bold">{{item[0]}}</div>
-      <p class="answer" v-html="item[1]"></p>
-    </div>
+  <div class="" style="max-width: 1000px; width:100vw; padding-top:3rem; padding-bottom:3rem;">
+    <q-list style="">
+      <q-expansion-item class="pair" :key="index" v-for="(item, index) in elements" :default-opened="index === 0" :label="item[0]" expand-icon="o_add" expanded-icon="o_remove" header-class="text-bold">
+        <q-card>
+          <q-card-section v-html="item[1]">
+          </q-card-section>
+        </q-card>
+      </q-expansion-item>
+    </q-list>
   </div>
 </template>
 
 <style scoped>
   .answer {
     padding-top:1rem;
+    transform-origin: top center;
+    max-height:3rem;
+    overflow:hidden;
+    transition:all .1s;
+  }
+
+  .shown {
+    max-height:100%;
+    opacity:1;
+    transform:scale(1,1);
   }
   .pair {
-    padding-bottom:2rem;
     width:100%;
     max-width:1000px;
-    padding:3rem;
+    padding-bottom:3rem;
+    font-size:1rem;
   }
   .evened {
     background:rgba(255,255,255,0.05);
@@ -26,6 +40,18 @@
 
 export default {
   name: 'FAQ',
+  methods: {
+    togglePair (index) {
+      const pair = document.querySelector('#faq_' + index + ' .answer')
+      console.log(pair.className)
+      if (pair.className === 'answer') {
+        pair.className = 'answer shown'
+      } else {
+        pair.className = 'answer'
+      }
+    }
+  },
+  mounted () {},
   data () {
     return {
       elements: [

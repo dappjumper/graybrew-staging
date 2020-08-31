@@ -75,7 +75,7 @@ body {
   width:300px;
 }
 
-.product .q-img {
+.product .q-img-product {
 
 }
 
@@ -235,7 +235,7 @@ body {
   transition: all 0s!important;
 }
 
-.product .q-img {
+.product .q-img-product {
     height:300px;
   }
 
@@ -248,7 +248,7 @@ body {
   .displayItem .q-card__section {
   }
 
-  .product .q-img {
+  .product .q-img-product {
     height:200px;
   }
   .product .q-card__section .q-input {
@@ -333,6 +333,46 @@ p {
   padding-right:1rem;
 }
 
-.displayItem .q-img__image {
+.displayItem .q-img-product__image {
     background-size:contain!important;
+  }
+
+  .expanded .container {
+    max-width:1400px;
+    width:100vw;
+    left:50vw;
+    transform:translate(-50%, 0);
+    position:absolute;
+    margin:0 auto;
+  }
+  .expanded .q-img {
+    max-height:500px;
+  }
+  @media (max-width:600px) {
+    .expanded .container > div {
+      width:100%!important;
+    }
+  }
+  .expanded .container > div {
+    width:50%;
+    float:left;
+  }
+  .quantifier {
+    height:50px;
+    width:50px;
+  }
+  .fadeIn {
+    opacity:0;
+    transition: all .15s;
+    transform:translate(-100%, -100%)!important;
+  }
+  .fadeIn.shown {
+    opacity:1;
+    transform:translate(0, -100%)!important;
+  }
+
+  .quantityField input {
+    font-size:1rem;
+    font-family:'IBM PLEX MONO', monospace;
+    text-align:center!important;
   }

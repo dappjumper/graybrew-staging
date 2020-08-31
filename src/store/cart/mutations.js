@@ -3,6 +3,7 @@ function saveLocalCart (state) {
 }
 
 export function addItem (state, payload) {
+  state.opened = true
   for (let i = 0; i < state.items.length; i++) {
     if (state.items[i].id === payload.id) {
       state.items[i].quantity += payload.quantity
@@ -37,6 +38,7 @@ export function setQuantity (state, payload) {
         state.items[i].quantity = payload.quantity
       }
       saveLocalCart(state)
+      if (!state.items.length) state.opened = false
       return false
     }
   }
@@ -47,6 +49,7 @@ export function removeItem (state, payload) {
     if (state.items[i].id === payload) {
       state.items.splice(i, 1)
       saveLocalCart(state)
+      if (!state.items.length) state.opened = false
       return false
     }
   }

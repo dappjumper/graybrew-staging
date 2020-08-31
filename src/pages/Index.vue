@@ -3,10 +3,10 @@
     <div style="position:relative;" class="underHeader row bg-secondary text-grey-1 hero">
       <div class="container sidepad heroContent">
         <h1 class="text-bold">
-          Freshly brewed
+          Gray Brew Best Brew
         </h1>
         <h2>
-          Hot-blooded creatives turned cold-brewers
+          Start the day right, every time.
         </h2>
       </div>
       <div class="video-container">

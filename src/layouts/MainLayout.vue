@@ -23,7 +23,7 @@
             to="/account"
             icon="o_person"
             aria-label="Account"
-          >Account</q-btn>
+          >About</q-btn>
           <q-btn
             flat
             style="padding-right:1.5rem; margin-left:-0.8rem;"
